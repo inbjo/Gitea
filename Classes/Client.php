@@ -52,7 +52,8 @@ class Client
     public function __construct($baseUri, $authentication)
     {
         $this->config = [
-            'base_uri' => $baseUri
+            'base_uri' => $baseUri,
+            'verify' => false
         ];
 
         $this->auth($authentication);
