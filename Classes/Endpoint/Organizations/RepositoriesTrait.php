@@ -17,9 +17,13 @@ trait RepositoriesTrait
      */
     public function getRepos(string $organization): array
     {
-        $response = $this->client->request(self::BASE_URI . '/' . $organization . '/repos');
-
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        $response = $this->client->request(self::BASE_URI . '/' . $organization . '/repos', 'GET', ['stream' => true]);
+        $body = $response->getBody();
+        $json = '';
+        while (!$body->eof()) {
+            $json .= $body->read(1024);
+        }
+        return \GuzzleHttp\json_decode($json, true);
     }
 
     /**
