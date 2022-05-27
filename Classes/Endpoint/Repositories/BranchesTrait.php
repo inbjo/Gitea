@@ -20,7 +20,7 @@ trait BranchesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branches');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -33,7 +33,7 @@ trait BranchesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branches/' . $branch);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
     
      /**
