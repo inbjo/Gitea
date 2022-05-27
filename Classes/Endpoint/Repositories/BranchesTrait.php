@@ -35,4 +35,22 @@ trait BranchesTrait
 
         return \GuzzleHttp\json_decode($response->getBody(), true);
     }
+    
+     /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param string $baseBranchName
+     * @param string $newBranchName
+     * @return array
+     */
+    public function createBranche(string $owner, string $repositoryName, string $baseBranchName, string $newBranchName)
+    {
+        $options['json'] = [
+            'new_branch_name' => $newBranchName,
+            'old_branch_name' => $baseBranchName,
+        ];
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branches', 'POST', $options);
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
 }
