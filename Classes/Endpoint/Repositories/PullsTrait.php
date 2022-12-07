@@ -24,11 +24,11 @@ trait PullsTrait
     public function getPulls(
         string $owner,
         string $repositoryName,
-        int $page = null,
+        int    $page = null,
         string $state = null,
         string $sort = null,
-        int $milestone = null,
-        array $lables = null
+        int    $milestone = null,
+        array  $lables = null
     ): array
     {
         $options['query'] = [
@@ -42,7 +42,7 @@ trait PullsTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/pulls', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -60,17 +60,17 @@ trait PullsTrait
      * @return array
      */
     public function createPull(
-        string $owner,
-        string $repositoryName,
-        string $assignee,
-        string $base,
-        string $head,
-        string $title,
-        array $assignees = null,
-        string $body = null,
+        string    $owner,
+        string    $repositoryName,
+        string    $assignee,
+        string    $base,
+        string    $head,
+        string    $title,
+        array     $assignees = null,
+        string    $body = null,
         \DateTime $dueDate = null,
-        array $labels = null,
-        int $milestone = null
+        array     $labels = null,
+        int       $milestone = null
     ): array
     {
         $options['json'] = [
@@ -100,12 +100,47 @@ trait PullsTrait
     public function getPull(
         string $owner,
         string $repositoryName,
-        int $index
+        int    $index
     ): array
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/pulls/' . $index, 'GET');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param int $index
+     * @return array
+     */
+    public function getReviews(
+        string $owner,
+        string $repositoryName,
+        int    $index
+    ): array
+    {
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/pulls/' . $index . '/reviews', 'GET');
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param int $index
+     * @return array
+     */
+    public function getReview(
+        string $owner,
+        string $repositoryName,
+        int    $index,
+        int    $id
+    ): array
+    {
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/pulls/' . $index. '/reviews/'. $id.'/comments', 'GET');
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -124,18 +159,18 @@ trait PullsTrait
      * @return array
      */
     public function updatePull(
-        string $owner,
-        string $repositoryName,
-        int $index,
-        string $assignee = null,
-        string $title = null,
-        string $state = null,
-        array $assignees = null,
-        string $body = null,
+        string    $owner,
+        string    $repositoryName,
+        int       $index,
+        string    $assignee = null,
+        string    $title = null,
+        string    $state = null,
+        array     $assignees = null,
+        string    $body = null,
         \DateTime $dueDate = null,
-        bool $unsetDueDate = null,
-        array $labels = null,
-        int $milestone = null
+        bool      $unsetDueDate = null,
+        array     $labels = null,
+        int       $milestone = null
     ): array
     {
         $options['json'] = [
@@ -165,7 +200,7 @@ trait PullsTrait
     public function checkMerged(
         string $owner,
         string $repositoryName,
-        int $index
+        int    $index
     ): bool
     {
         $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/pulls/' . $index . '/merge', 'GET');
@@ -185,7 +220,7 @@ trait PullsTrait
     public function mergePull(
         string $owner,
         string $repositoryName,
-        int $index,
+        int    $index,
         string $do,
         string $mergeMessage = null,
         string $mergeTitle = null
