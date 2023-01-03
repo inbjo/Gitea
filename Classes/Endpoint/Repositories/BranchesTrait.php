@@ -53,4 +53,19 @@ trait BranchesTrait
 
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
+    
+    /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param array $config
+     * @return array
+     */
+    public function createBrancheProtection(string $owner, string $repositoryName, array $config)
+    {
+        $options['json'] = $config;
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branch_protections', 'POST', $options);
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
+    
 }
