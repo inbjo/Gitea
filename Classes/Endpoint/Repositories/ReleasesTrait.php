@@ -20,7 +20,7 @@ trait ReleasesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -57,7 +57,7 @@ trait ReleasesTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases', 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -70,7 +70,7 @@ trait ReleasesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -82,6 +82,19 @@ trait ReleasesTrait
     public function deleteRelease(string $owner, string $repositoryName, int $id): bool
     {
         $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id, 'DELETE');
+
+        return true;
+    }
+
+    /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param string $tag
+     * @return bool
+     */
+    public function deleteReleaseByTag(string $owner, string $repositoryName, string $tag): bool
+    {
+        $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/tags/' . $tag, 'DELETE');
 
         return true;
     }
@@ -122,7 +135,7 @@ trait ReleasesTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id, 'PATCH', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -135,7 +148,7 @@ trait ReleasesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id . '/assets');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -148,7 +161,7 @@ trait ReleasesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id . '/assets/' . $assetId);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -179,6 +192,6 @@ trait ReleasesTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/releases/' . $id . '/assets/' . $assetId, 'PATCH', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }
