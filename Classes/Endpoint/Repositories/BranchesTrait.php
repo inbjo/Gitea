@@ -54,6 +54,19 @@ trait BranchesTrait
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
     
+     /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param string $branch
+     * @return bool
+     */
+    public function deleteBranch(string $owner, string $repositoryName, string $branch): bool
+    {
+        $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branches/' . $branch, 'DELETE');
+
+        return true;
+    }
+    
     /**
      * @param string $owner
      * @param string $repositoryName
