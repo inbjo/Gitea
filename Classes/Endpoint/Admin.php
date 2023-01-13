@@ -40,7 +40,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['query'] = $this->removeNullValues($options['query']);
 
         $response = $this->client->request(self::BASE_URI . '/orgs', 'GET', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -49,7 +49,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
     public function getUsers(): array
     {
         $response = $this->client->request(self::BASE_URI . '/users');
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -87,7 +87,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/users', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -148,7 +148,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/users/' . $username, 'PATCH', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -183,7 +183,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/users/' . $username . '/keys', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -236,7 +236,7 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/users/' . $username . '/orgs', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -276,6 +276,6 @@ class Admin extends AbstractEndpoint implements EndpointInterface
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/users/' . $username . '/repos', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }
