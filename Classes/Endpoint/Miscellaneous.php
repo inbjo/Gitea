@@ -73,6 +73,6 @@ class Miscellaneous extends AbstractEndpoint implements EndpointInterface
     public function version(): string
     {
         $response = $this->client->request(self::BASE_URI . '/version');
-        return \GuzzleHttp\json_decode($response->getBody(), true)['version'];
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['version'];
     }
 }

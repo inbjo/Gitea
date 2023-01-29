@@ -28,7 +28,7 @@ trait CommitsTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/commits', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -47,6 +47,6 @@ trait CommitsTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/commits/' . $ref . '/statuses', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

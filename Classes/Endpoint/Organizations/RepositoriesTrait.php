@@ -18,6 +18,7 @@ trait RepositoriesTrait
     public function getRepos(string $organization): array
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/repos');
+
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
@@ -59,6 +60,6 @@ trait RepositoriesTrait
 
         $response = $this->client->request('/org/' . $organization . '/repos', 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

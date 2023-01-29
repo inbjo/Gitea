@@ -18,7 +18,7 @@ trait RepositoriesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/repos');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -28,7 +28,7 @@ trait RepositoriesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/starred');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -74,6 +74,6 @@ trait RepositoriesTrait
     {
         $response = $this->client->request(self::BASE_URI . '/subscriptions');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

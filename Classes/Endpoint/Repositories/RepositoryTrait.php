@@ -66,7 +66,7 @@ trait RepositoryTrait
 
         $options['json'] = $this->removeNullValues($options['json']);
         $response = $this->client->request(self::BASE_URI . '/migrate', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -122,7 +122,7 @@ trait RepositoryTrait
         $options['query'] = $this->removeNullValues($options['query']);
 
         $response = $this->client->request(self::BASE_URI . '/search', 'GET', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -133,7 +133,7 @@ trait RepositoryTrait
     public function get(string $owner, string $repositoryName): array
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -234,7 +234,7 @@ trait RepositoryTrait
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName, 'PATCH', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -270,7 +270,7 @@ trait RepositoryTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/stargazers');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -282,7 +282,7 @@ trait RepositoryTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/tags');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -294,7 +294,7 @@ trait RepositoryTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/times');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -304,7 +304,7 @@ trait RepositoryTrait
     public function getById(int $id): array
     {
         $response = $this->client->request('/repositories/' . $id);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -319,7 +319,7 @@ trait RepositoryTrait
 
         $response = $this->client->request('/topics/search', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -358,6 +358,6 @@ trait RepositoryTrait
 
         $response = $this->client->request('/user/repos', 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

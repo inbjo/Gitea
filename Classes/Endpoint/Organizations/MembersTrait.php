@@ -19,7 +19,7 @@ trait MembersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/members');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -54,7 +54,7 @@ trait MembersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/public_members');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**

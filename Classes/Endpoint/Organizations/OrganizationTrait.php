@@ -19,7 +19,7 @@ trait OrganizationTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -55,7 +55,7 @@ trait OrganizationTrait
 
         $response = $this->client->request(self::BASE_URI, 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -101,6 +101,6 @@ trait OrganizationTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $organization, 'PATCH', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

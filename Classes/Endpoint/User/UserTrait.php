@@ -18,7 +18,7 @@ trait UserTrait
     {
         $response = $this->client->request(self::BASE_URI);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -28,7 +28,7 @@ trait UserTrait
     {
         $response = $this->client->request(self::BASE_URI . '/emails');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -43,7 +43,7 @@ trait UserTrait
 
         $response = $this->client->request(self::BASE_URI . '/emails', 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -68,7 +68,7 @@ trait UserTrait
     {
         $response = $this->client->request(self::BASE_URI . '/stopwatches');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -78,7 +78,7 @@ trait UserTrait
     {
         $response = $this->client->request(self::BASE_URI . '/teams');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -88,6 +88,6 @@ trait UserTrait
     {
         $response = $this->client->request(self::BASE_URI . '/times');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

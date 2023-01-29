@@ -19,7 +19,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -39,7 +39,7 @@ trait UsersTrait
 
         $response = $this->client->request(self::BASE_URI . '/search', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -62,7 +62,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/followers');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -73,7 +73,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/following');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -84,7 +84,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/gpg_keys');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -95,7 +95,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/heatmap');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -106,7 +106,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/keys');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -117,7 +117,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/repos');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -128,7 +128,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/starred');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -139,7 +139,7 @@ trait UsersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $username . '/subscriptions');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -152,6 +152,6 @@ trait UsersTrait
     {
         $response = $this->client->request('/repos/' . $owner . '/' . $repositoryName . '/times/' . $username);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

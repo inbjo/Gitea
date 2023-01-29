@@ -18,7 +18,7 @@ trait FollowersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/followers');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -28,7 +28,7 @@ trait FollowersTrait
     {
         $response = $this->client->request(self::BASE_URI . '/following');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**

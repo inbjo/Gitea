@@ -18,7 +18,7 @@ trait UsersTrait
     {
         $response = $this->client->request('/user/orgs');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -29,6 +29,6 @@ trait UsersTrait
     {
         $response = $this->client->request('/users/' . $username . '/orgs');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

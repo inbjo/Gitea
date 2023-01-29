@@ -35,8 +35,8 @@ trait BranchesTrait
 
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
-    
-     /**
+
+    /**
      * @param string $owner
      * @param string $repositoryName
      * @param string $baseBranchName
@@ -53,8 +53,8 @@ trait BranchesTrait
 
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
-    
-     /**
+
+    /**
      * @param string $owner
      * @param string $repositoryName
      * @param string $branch
@@ -66,7 +66,7 @@ trait BranchesTrait
 
         return true;
     }
-    
+
     /**
      * @param string $owner
      * @param string $repositoryName
@@ -80,5 +80,4 @@ trait BranchesTrait
 
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
-    
 }

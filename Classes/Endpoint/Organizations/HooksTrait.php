@@ -19,7 +19,7 @@ trait HooksTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/hooks');
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -51,7 +51,7 @@ trait HooksTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/hooks', 'POST', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -63,7 +63,7 @@ trait HooksTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/hooks/' . $id);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -106,6 +106,6 @@ trait HooksTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $organization . '/hooks/' . $id, 'PATCH', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 }

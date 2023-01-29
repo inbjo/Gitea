@@ -28,7 +28,7 @@ trait KeysTrait
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/keys', 'GET', $options);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -55,7 +55,7 @@ trait KeysTrait
         $options['json'] = $this->removeNullValues($options['json']);
 
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/keys', 'POST', $options);
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -68,7 +68,7 @@ trait KeysTrait
     {
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/keys/' . $keyId);
 
-        return \GuzzleHttp\json_decode($response->getBody(), true);
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
 
     /**
