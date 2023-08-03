@@ -47,7 +47,7 @@ trait BranchesTrait
     {
         $options['json'] = [
             'new_branch_name' => $newBranchName,
-            'old_branch_name' => $baseBranchName,
+            'old_ref_name' => $baseBranchName,
         ];
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branches', 'POST', $options);
 
@@ -77,6 +77,27 @@ trait BranchesTrait
     {
         $options['json'] = $config;
         $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branch_protections', 'POST', $options);
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @param string $owner
+     * @param string $repositoryName
+     * @param array $config
+     * @return array
+     */
+    public function updateBrancheProtection(string $owner, string $repositoryName, string $branch, array $config)
+    {
+        $options['json'] = $config;
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branch_protections/' . $branch, 'PATCH', $options);
+
+        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+    }
+
+    public function deleteBrancheProtection(string $owner, string $repositoryName, string $branch)
+    {
+        $response = $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/branch_protections/' . $branch, 'DELETE');
 
         return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
     }
