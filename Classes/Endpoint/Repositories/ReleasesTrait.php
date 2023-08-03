@@ -99,6 +99,14 @@ trait ReleasesTrait
         return true;
     }
 
+
+    public function deleteTag(string $owner, string $repositoryName, string $tag): bool
+    {
+        $this->client->request(self::BASE_URI . '/' . $owner . '/' . $repositoryName . '/tags/' . $tag, 'DELETE');
+
+        return true;
+    }
+
     /**
      * @param string $owner
      * @param string $repositoryName
