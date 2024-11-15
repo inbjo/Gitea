@@ -31,6 +31,7 @@ class Client
     const AUTH_ACCESS_TOKEN = 'access_token';
     const AUTH_TOKEN = 'token';
     const AUTH_BASIC_AUTH = 'basic_auth';
+    const AUTH_Authorization_Header_Token = 'authorization_header_token';
 
     const BASE_URI = '/api/v1';
 
@@ -94,6 +95,10 @@ class Client
             $options['query'] = $this->config['query'];
         }
 
+        if (isset($this->config['headers']['Authorization'])) {
+            $options['headers'] = array_merge($this->config['headers'], $options['headers'] ?? []);
+        }
+
         return $this->httpClient->request($method, $uri, $options);
     }
 
@@ -143,6 +148,14 @@ class Client
                 }
 
                 $this->config['query']['token'] = $authentication['auth'];
+                break;
+
+            case self::AUTH_Authorization_Header_Token:
+                if (empty($authentication['auth'])) {
+                    throw new Exception('Please add the authorization header token.', 1579246003);
+                }
+
+                $this->config['headers']['Authorization'] = $authentication['auth'];
                 break;
         }
     }
