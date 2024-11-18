@@ -155,7 +155,7 @@ class Client
                     throw new Exception('Please add the authorization header token.', 1579246003);
                 }
 
-                $this->config['headers']['Authorization'] = $authentication['auth'];
+                $this->config['headers']['Authorization'] = 'token ' . $authentication['auth'];
                 break;
         }
     }
